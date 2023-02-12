@@ -29,7 +29,7 @@ namespace ePizzaHub.WebUI.Controllers
             {
                 new Claim(ClaimTypes.UserData,strData),
                 new Claim(ClaimTypes.Email,user.Email),
-                new Claim(ClaimTypes.Role,user.Roles.ToString()),
+                new Claim(ClaimTypes.Role,String.Join(",", user.Roles)),
             };
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), new AuthenticationProperties
